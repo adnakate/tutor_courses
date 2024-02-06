@@ -1,24 +1,56 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+How to run the application?
+- Install rails 6
+- Install ruby 2.7.2
+- Do bundle install inside the folder- Change database credentials in database.yml accordingly
+- Run rake db:create
+- Run rake db:migrate
+Now you are ready to run the apis
 
-Things you may want to cover:
+You have 3 apis here
 
-* Ruby version
 
-* System dependencies
+API 1
+- POST http://localhost:3000/api/v1/courses - This will create course and it's tutors
+- Parameters format -
+  {"course"=>
+  { "name"=>"Thermodynamics",
+    "subject"=>"Chemistry",
+    "tutors_attributes"=>[
+      {"first_name"=>"Ganesh", "last_name"=>"Bansode", "email"=>"ganesh@gmail.com"},
+      {"first_name"=>"Guddu", "last_name"=>"Bansode", "email"=>"guddu@gmail.com"}
+    ]
+  }
+}
 
-* Configuration
+API 2
+- GET http://localhost:3000/api/v1/courses - This will return the list of courses with associated tutors
+- Parameters format -
+  {"page"=>"1"}
 
-* Database creation
+API 3
+- POST http://localhost:3000/api/v1/tutors - This will create tutors for existing course
+- Parameters format -
+ {"tutor"=>
+  { "course_id"=>"9",
+    "first_name"=>"Rupesh",
+    "last_name"=>"Pund",
+    "email"=>"rupesh@gmail.com"
+  }
+}
 
-* Database initialization
+Topics covered in the assignment-
+- Basic rails association
+- All model level validations with custom messages
+- Email regex validations with custom messages
+- Controller level custom validations
+- Serializers
+- Pagination- Added indexes wherever required
+- Rspec
+- Shared examples with rspec
+- Efficient APIs
 
-* How to run the test suite
+All the necessary test cases are added. You can run them with rspec command. 
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+There was no major business logic so I did not use models or separate ruby classes to store business logic.
